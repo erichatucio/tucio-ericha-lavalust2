@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users | LavaLust</title>
+    <style>
+        :root {
+            --deep: #061c2b;
+            --deepest: #04131e;
+            --ocean: #0b3b55;
+            --foam: #eaf8fa;
+            --muted: #8fb6c5;
+            --aqua: #55d6d2;
+            --line: rgba(143, 182, 197, 0.18);
+            --shadow: 0 26px 70px rgba(0, 7, 15, 0.32);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 64px 24px;
+            color: var(--foam);
+            font-family: Georgia, 'Times New Roman', serif;
+            background:
+                radial-gradient(circle at 12% 4%, rgba(67, 185, 196, 0.2), transparent 27%),
+                radial-gradient(circle at 88% 92%, rgba(16, 92, 129, 0.28), transparent 34%),
+                linear-gradient(145deg, var(--deepest), var(--deep) 52%, #092c42);
+        }
+
+        .page-shell {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+        }
+
+        .page-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--aqua);
+            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 0.72rem;
+            font-weight: bold;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.3rem, 6vw, 4.6rem);
+            font-weight: normal;
+            letter-spacing: 0.01em;
+            line-height: 0.95;
+        }
+
+        .header-mark {
+            width: 58px;
+            height: 58px;
+            border: 1px solid rgba(85, 214, 210, 0.55);
+            border-radius: 50%;
+            position: relative;
+            flex: 0 0 auto;
+        }
+
+        .header-mark::before,
+        .header-mark::after {
+            content: '';
+            position: absolute;
+            border: 1px solid var(--aqua);
+            border-radius: 50%;
+        }
+
+        .header-mark::before {
+            inset: 10px;
+        }
+
+        .header-mark::after {
+            inset: 21px;
+            background: var(--aqua);
+        }
+
+        .table-frame {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(7, 38, 55, 0.74);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        th,
+        td {
+            padding: 19px 24px;
+            text-align: left;
+        }
+
+        th {
+            color: var(--muted);
+            background: rgba(4, 19, 30, 0.56);
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        td {
+            border-top: 1px solid var(--line);
+            color: #d9edf0;
+            font-size: 0.94rem;
+        }
+
+        tbody tr {
+            transition: background 180ms ease, transform 180ms ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(85, 214, 210, 0.09);
+        }
+
+        tbody td:first-child {
+            color: var(--aqua);
+            font-weight: bold;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .empty-state {
+            padding: 56px 24px;
+            color: var(--muted);
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 36px 14px;
+            }
+
+            .page-header {
+                align-items: flex-start;
+            }
+
+            .header-mark {
+                width: 44px;
+                height: 44px;
+            }
+
+            .header-mark::before {
+                inset: 7px;
+            }
+
+            .header-mark::after {
+                inset: 16px;
+            }
+
+            .table-frame {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 690px;
+            }
+
+            th,
+            td {
+                padding: 15px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page-shell">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">LavaLust directory</p>
+                <h1>Users</h1>
+            </div>
+            <span class="header-mark" aria-hidden="true"></span>
+        </header>
+
+        <div class="table-frame">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($users)): ?>
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td><?= htmlspecialchars((string) ($user['id'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars((string) ($user['firstname'] ?? $user['first_name'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars((string) ($user['lastname'] ?? $user['last_name'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars((string) ($user['email'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars((string) ($user['username'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td class="empty-state" colspan="5">No records found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
