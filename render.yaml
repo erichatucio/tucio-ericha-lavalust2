@@ -20,8 +20,6 @@ services:
         value: avnadmin
       - key: DB_USER
         value: avnadmin
-      - key: DB_PASSWORD
-        value: REDACTED_AIVEN_PASSWORD
       - key: DB_NAME
         value: newdb
       - key: DB_DATABASE

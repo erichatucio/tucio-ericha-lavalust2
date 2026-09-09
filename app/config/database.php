@@ -7,12 +7,12 @@ $envUser = getenv('DB_USERNAME') ?: getenv('DB_USER') ?: '';
 $envPass = getenv('DB_PASSWORD') ?: '';
 $envDb   = getenv('DB_NAME') ?: getenv('DB_DATABASE') ?: '';
 
-$hasRealEnv = $envHost !== '' && $envUser !== '' && $envPass !== '' && $envDb !== '';
+$hasRealEnv = $envHost !== '' && $envUser !== '' && $envDb !== '';
 
 $mainHost = $hasRealEnv ? $envHost : 'mysql-3281339a-erichatucio-2b3d.g.aivencloud.com';
 $mainPort = $hasRealEnv ? ($envPort ?: '28459') : '28459';
 $mainUser = $hasRealEnv ? $envUser : 'avnadmin';
-$mainPass = $hasRealEnv ? $envPass : 'REDACTED_AIVEN_PASSWORD';
+$mainPass = $hasRealEnv ? $envPass : '';
 $mainDb   = $hasRealEnv ? $envDb : 'newdb';
 
 $database['main'] = array(
