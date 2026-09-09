@@ -222,7 +222,8 @@ class Session {
         $this->security_check_lock($ip, $fingerprint);
 
         // Start session
-        $existing_session = !empty($_COOKIE[$this->config['cookie_name']]);
+        $cookie_value = $_COOKIE[$this->config['cookie_name']] ?? '';
+        $existing_session = !empty($cookie_value) && $cookie_value !== 'deleted';
         session_start();
 
         if (!$existing_session && empty($_SESSION)) {
@@ -611,22 +612,32 @@ class Session {
 
         if (session_status() === PHP_SESSION_ACTIVE) {
             $params = session_get_cookie_params();
+            $name = $this->config['cookie_name'] ?? session_name();
+
             setcookie(
-                session_name(),
-                '',
-                time() - 42000,
-                $params['path'] ?? '/',
-                $params['domain'] ?? '',
-                $params['secure'] ?? false,
-                $params['httponly'] ?? true
+                $name,
+                'deleted',
+                array(
+                    'expires'  => time() - 42000,
+                    'path'     => $params['path'] ?? '/',
+                    'domain'   => $params['domain'] ?? '',
+                    'secure'   => $params['secure'] ?? false,
+                    'httponly' => $params['httponly'] ?? true,
+                    'samesite' => $params['samesite'] ?? 'Strict'
+                )
             );
 
+            session_unset();
             session_destroy();
+            session_id('');
+            unset($_COOKIE[$name]);
         }
+
+        $_SESSION = [];
     }
 
 	/**
-	 * Fetch flashdata
+	 * Fetch session flash data (one-time messages)
 	 *
 	 * @param string|null $key
 	 * @return mixed

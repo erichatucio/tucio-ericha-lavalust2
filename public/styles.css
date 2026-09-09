@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #17324d;
+    background:
+        radial-gradient(circle at top left, #eff8ff 0%, transparent 30%),
+        linear-gradient(135deg, #dbeafe 0%, #eef7ff 50%, #c7e0ff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-shell {
+    width: min(100%, 980px);
+    background: rgba(255,255,255,0.92);
+    border-radius: 16px;
+    padding: 28px 30px;
+    box-shadow: 0 16px 40px rgba(19, 80, 160, 0.18);
+    border: 1px solid #b5d7ff;
+}
+
+.login-card,
+.product-card {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #145a8a;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    background: #eef7ff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #aacaf1;
+}
+
+label {
+    display: block;
+    margin: 6px 0 4px;
+    color: #175985;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #96bddf;
+    background: #ffffff;
+}
+
+button,
+.btn,
+.btn-link {
+    display: inline-block;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #2563eb, #4cc9f0);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover,
+.btn:hover,
+.btn-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 18px rgba(37, 99, 235, 0.2);
+}
+
+.product-actions {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links a,
+.table-actions a {
+    color: #166294;
+    text-decoration: none;
+}
+
+.nav-links a:hover,
+.table-actions a:hover {
+    color: #0b4d73;
+}
+
+.flash-success {
+    color: #036b3f;
+    background: #dcfce7;
+    border: 1px solid #86efac;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.flash-error {
+    color: #b91c1c;
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background: #ffffff;
+}
+
+.product-table th {
+    background: #1d78b4;
+    color: #fff;
+    padding: 12px;
+}
+
+.product-table td {
+    padding: 10px;
+    border-bottom: 1px solid #b7d9f4;
+}
+
+.product-table tr:nth-child(even) {
+    background: #eef8ff;
+}
+
+small {
+    color: #526170;
+}

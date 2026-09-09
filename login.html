@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products | LavaLust</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="app-shell product-card">
+        <h1>Products</h1>
+
+        <p class="flash-success">Welcome back, tucioericha@gmail.com</p>        
+        <div class="product-actions nav-links">
+            <a class="btn" href="/products/create">Add Product</a>
+            <a class="btn" href="/logout">Logout</a>
+        </div>
+
+        <table class="product-table">
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+
+                            <tr>
+                    <td>1</td>
+                    <td>Katol</td>
+                    <td>pampatay ng lamok</td>
+                    <td>8.00</td>
+                    <td>2</td>
+                    <td>2026-09-09 23:35:27</td>
+                    <td class="table-actions">
+                        <a href="/products/edit/1">Edit</a> |
+                        <a href="/products/delete/1" onclick="return confirm('Delete this product?')">Delete</a>
+                    </td>
+                </tr>
+                            <tr>
+                    <td>2</td>
+                    <td>skentific foundation</td>
+                    <td>face powder</td>
+                    <td>45000.00</td>
+                    <td>2</td>
+                    <td>2026-09-09 23:44:33</td>
+                    <td class="table-actions">
+                        <a href="/products/edit/2">Edit</a> |
+                        <a href="/products/delete/2" onclick="return confirm('Delete this product?')">Delete</a>
+                    </td>
+                </tr>
+                    </table>
+    </div>
+</body>
+</html>

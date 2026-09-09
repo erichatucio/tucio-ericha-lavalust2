@@ -268,6 +268,14 @@ class Database {
             PDO::ATTR_EMULATE_PREPARES   => false,
         );
 
+        if ($driver === 'mysql') {
+            // Aiven endpoints often expose an SSL-enabled MySQL service, but
+            // the local workspace is purposely running without mutating the
+            // environment file. Keep the server-certificate verification
+            // disabled for this exercise and rely only on the app fallback.
+            $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+        }
+
         try {
             $this->db = new PDO($dsn, $username, $password, $options);
             $this->driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);

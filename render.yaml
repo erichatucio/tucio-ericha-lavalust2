@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: lavalust2
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_DRIVER
+        value: mysql
+      - key: DB_HOST
+        value: mysql-3281339a-erichatucio-2b3d.g.aivencloud.com
+      - key: DB_PORT
+        value: "28459"
+      - key: DB_USERNAME
+        value: avnadmin
+      - key: DB_USER
+        value: avnadmin
+      - key: DB_PASSWORD
+        value: REDACTED_AIVEN_PASSWORD
+      - key: DB_NAME
+        value: newdb
+      - key: DB_DATABASE
+        value: newdb
+      - key: PRODUCTS_DB_NAME
+        value: newdb
+      - key: DB_CHARSET
+        value: utf8mb4
+      - key: DB_PREFIX
+        value: ""
+      - key: DB_PATH
+        value: ""

@@ -266,6 +266,10 @@ if (!function_exists('get_config')) {
 
             require_once($main_file); // must define $config array
 
+            if (file_exists(APP_DIR . 'config/middleware.php')) {
+                require_once APP_DIR . 'config/middleware.php';
+            }
+
             if (!isset($config) || !is_array($config)) {
                 throw new RuntimeException('config.php must define $config array');
             }
