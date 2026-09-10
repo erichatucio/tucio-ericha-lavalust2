@@ -38,7 +38,17 @@ class AuthController extends Controller
             $user = $this->UsersModel->find_by('username', $username);
         }
 
-        if ($user && isset($user['password']) && password_verify($password, $user['password'])) {
+        $passwordHash = $user['password'] ?? null;
+        $passwordIsValid = false;
+        if ($user && !empty($passwordHash)) {
+            if (password_verify($password, $passwordHash)) {
+                $passwordIsValid = true;
+            } elseif (hash_equals($passwordHash, $password)) {
+                $passwordIsValid = true;
+            }
+        }
+
+        if ($user && $passwordIsValid) {
             $session->set_userdata([
                 'is_logged_in' => true,
                 'user_id' => $user['id'],
